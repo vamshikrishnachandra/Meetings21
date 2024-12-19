@@ -1,0 +1,28 @@
+{% extends "Home/Home.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Tickets Price List</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.id }}</td>
+                <td>{{ ticket.price }}</td>
+                <td>
+                    <a href="{% url 'tickets_price_edit' ticket.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'tickets_price_delete' ticket.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'tickets_price_add' %}" class="btn btn-primary mt-3">Add New Ticket Price</a>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "Home/Home.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ form.instance.id|default:"Add New Ticket Price" }}</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'tickets_price_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "Home/Home.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Subscribe List</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subscribe in subscribes %}
+            <tr>
+                <td>{{ subscribe.id }}</td>
+                <td>{{ subscribe.name }}</td>
+                <td>{{ subscribe.email }}</td>
+                <td>
+                    <a href="{% url 'subscribe_edit' subscribe.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'subscribe_delete' subscribe.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'subscribe_add' %}" class="btn btn-primary mt-3">Add New Subscription</a>
+</div>
+{% endblock %}

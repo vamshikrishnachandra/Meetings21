@@ -1,0 +1,148 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Meetings21 Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #06196b 0%, #e60072 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-container {
+      background: #fff;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      font-size: 2em;
+      margin-bottom: 30px;
+      color: #4a4a4a;
+      text-align: center;
+    }
+
+    h4 {
+      color: #764ba2;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .form-label {
+      font-weight: 600;
+      color: #555555;
+      margin-bottom: 8px;
+    }
+
+    .form-control {
+      border-radius: 10px;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      transition: all 0.3s ease;
+      font-size: 16px;
+    }
+
+    .form-control:focus {
+      border-color: #764ba2;
+      box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.25);
+    }
+
+    .login-btn {
+      background-color: #764ba2;
+      border-color: #764ba2;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-weight: 600;
+      width: 100%;
+      transition: all 0.3s ease;
+      color: #fff;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .login-btn:hover {
+      background-color: #06196b;
+      color:white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(118, 75, 162, 0.2);
+    }
+
+    .alert {
+      border-radius: 10px;
+      margin-top: 20px;
+      padding: 15px;
+      font-size: 14px;
+    }
+
+    .invalid-feedback {
+      color: #dc3545;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="login-container">
+    <div class="text-center">
+      <!-- <img src="{% static 'images/logo.png' %}" width="70" alt="College Logo" class="img-fluid"> -->
+      <h4>Welcome to <br>Meetings21 Admin</h4>
+    </div>
+    <!-- Login Form -->
+    <div class="">
+      <h5 class="text-primary">Login to Your Account</h5>
+      <hr>
+      <form method="post">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+          {{ form.non_field_errors }}
+        </div>
+        {% endif %}
+        <div class="mb-4">
+          <label for="id_username" class="form-label">{{ form.username.label }}</label>
+          <input type="text" name="username" id="id_username" class="form-control" placeholder="Enter your username"
+            value="{{ form.username.value|default_if_none:'' }}" required />
+          {% if form.username.errors %}
+          <div class="invalid-feedback d-block">
+            {{ form.username.errors }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="mb-4">
+          <label for="id_password" class="form-label">{{ form.password.label }}</label>
+          <input type="password" name="password" id="id_password" class="form-control" placeholder="Enter your password"
+            required />
+          {% if form.password.errors %}
+          <div class="invalid-feedback d-block">
+            {{ form.password.errors }}
+          </div>
+          {% endif %}
+        </div>
+        <button type="submit" class="btn login-btn w-40">Login</button>
+        <a href="{% url 'change_password' %}" class="text-right">Forgot Password</a>
+      </form>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

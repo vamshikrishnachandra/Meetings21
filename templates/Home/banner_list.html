@@ -1,0 +1,38 @@
+{% extends "Home/Home.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Banner List</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Image</th>
+                <th>Text</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for banner in banners %}
+            <tr>
+                <td>{{ banner.id }}</td>
+                <td>
+                    {% if banner.home_page_banner_image %}
+                    <img src="{{ banner.home_page_banner_image.url }}" alt="Banner Image" width="100">
+                    {% else %}
+                    No Image
+                    {% endif %}
+                </td>
+                <td>{{ banner.home_page_banner_text }}</td>
+                <td>{{ banner.home_page_banner_date }}</td>
+                <td>
+                    <a href="{% url 'banner_edit' banner.id %}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{% url 'banner_delete' banner.id %}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'banner_add' %}" class="btn btn-primary mt-3">Add New Banner</a>
+</div>
+{% endblock %}

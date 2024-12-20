@@ -1,0 +1,61 @@
+{% extends "Home/Home.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ form.instance.id|default:"Add New Subscription" }}</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_title">Title</label>
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            <label for="id_first_name">First Name</label>
+            {{ form.first_name }}
+        </div>
+        <div class="form-group">
+            <label for="id_last_name">Last Name</label>
+            {{ form.last_name }}
+        </div>
+        <div class="form-group">
+            <label for="id_university">University</label>
+            {{ form.university }}
+        </div>
+        <div class="form-group">
+            <label for="id_country">Country</label>
+            {{ form.country }}
+        </div>
+        <div class="form-group">
+            <label for="id_email">Email</label>
+            {{ form.email }}
+        </div>
+        <div class="form-group">
+            <label for="id_whatsapp_number">WhatsApp Number</label>
+            {{ form.whatsapp_number }}
+        </div>
+        <div class="form-group">
+            <label for="id_presentation_type">Presentation Type</label>
+            {{ form.presentation_type }}
+        </div>
+        <div class="form-group">
+            <label for="id_topic_of_interest">Topic of Interest</label>
+            {{ form.topic_of_interest }}
+        </div>
+        <div class="form-group">
+            <label for="id_title_of_abstract">Title of Abstract</label>
+            {{ form.title_of_abstract }}
+        </div>
+        <div class="form-group">
+            <label for="id_file">File</label>
+            {{ form.file }}
+        </div>
+        <div class="form-group form-check">
+            <label for="id_agree">
+                {{ form.agree }}
+                Agree to Terms
+            </label>
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'subscribe_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
